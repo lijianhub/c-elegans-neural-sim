@@ -106,6 +106,29 @@ class ChemotaxisCircuit:
         self.aiy = LIFNeuron(dt=dt)  # "keep going straight" neuron
         self.aiz = LIFNeuron(dt=dt)  # "turn" neuron
         self.prev_concentration = None
+        # What each neuron did during the most recent `decide` call (membrane
+        # potential and spike flag per LIF sub-step), kept only so a
+        # visualisation can replay it. Nothing in the circuit reads it.
+        self.last_activity = self._activity(
+            [self.aiy.v] * sub_steps, [False] * sub_steps,
+            [self.aiz.v] * sub_steps, [False] * sub_steps,
+        )
+
+    @staticmethod
+    def _activity(aiy_v, aiy_fired, aiz_v, aiz_fired):
+        return {
+            "aiy_v": aiy_v, "aiy_fired": aiy_fired,
+            "aiz_v": aiz_v, "aiz_fired": aiz_fired,
+        }
+
+    @staticmethod
+    def _drive(neuron, current, sub_steps):
+        """Run one neuron for `sub_steps` and return (potentials, spike flags)."""
+        potentials, fired = [], []
+        for _ in range(sub_steps):
+            fired.append(neuron.step(current))
+            potentials.append(neuron.v)
+        return potentials, fired
 
     def decide(self, concentration_now):
         """
@@ -133,12 +156,11 @@ class ChemotaxisCircuit:
         rising_drive = max(frac_change, 0.0) * self.GAIN
         falling_drive = max(-frac_change, 0.0) * self.GAIN
 
-        aiy_spikes = sum(
-            self.aiy.step(rising_drive) for _ in range(self.sub_steps)
-        )
-        aiz_spikes = sum(
-            self.aiz.step(falling_drive) for _ in range(self.sub_steps)
-        )
+        aiy_v, aiy_fired = self._drive(self.aiy, rising_drive, self.sub_steps)
+        aiz_v, aiz_fired = self._drive(self.aiz, falling_drive, self.sub_steps)
+        self.last_activity = self._activity(aiy_v, aiy_fired, aiz_v, aiz_fired)
+        aiy_spikes = sum(aiy_fired)
+        aiz_spikes = sum(aiz_fired)
 
         # Motor decision: AIZ (falling / "getting worse") has to actually
         # out-vote AIY to trigger a turn - a tie or silence means "stay
@@ -146,24 +168,52 @@ class ChemotaxisCircuit:
         return aiz_spikes > aiy_spikes
 
 
-def run_simulation(steps=400, dt=0.5, seed=7):
+# The worm has "eaten" once it is this close to the food, and stops there.
+# The circuit itself has no notion of arriving: it only ever compares "better
+# or worse than a moment ago", so on its own the worm would keep wandering
+# around the food source instead of stopping on it.
+EAT_RADIUS = 2.0
+
+
+def run_simulation(steps=1500, dt=0.5, seed=7, history=None, circuit=None):
+    """
+    Run the closed loop until the worm reaches the food (within EAT_RADIUS)
+    or `steps` run out. If a list is passed as `history`, one dict per step
+    is appended to it (concentration sensed, whether the worm turned, and the
+    interneurons' activity) so the run can be replayed as an animation.
+    `history[i]` describes the decision made at `worm.path[i]`.
+
+    `circuit` is whatever decides "turn or not" from the sensed concentration:
+    anything with `decide(concentration)` and `last_activity`. It defaults to
+    the two-interneuron ChemotaxisCircuit; full_chemotaxis.py passes in a
+    circuit built from the whole connectome instead.
+    """
     random.seed(seed)
 
     env = Environment(food_pos=(0.0, 0.0))
     worm = Worm(position=(-40.0, 30.0), heading_rad=random.uniform(0, 2 * math.pi))
-    circuit = ChemotaxisCircuit(dt=0.1)
+    circuit = circuit or ChemotaxisCircuit(dt=0.1)
 
     turn_count = 0
     start_distance = math.dist(worm.position, env.food_pos)
 
     for _ in range(steps):
+        if math.dist(worm.position, env.food_pos) <= EAT_RADIUS:
+            break  # reached the food
+
         c_now = env.concentration_at(worm.position)
 
-        if circuit.decide(c_now):
+        turned = circuit.decide(c_now)
+        if turned:
             # A real pirouette reorients to a mostly-new random heading,
             # not a small correction - mimicking that "sharp turn" behaviour.
             worm.turn(random.uniform(-math.pi, math.pi))
             turn_count += 1
+
+        if history is not None:
+            history.append(
+                {"concentration": c_now, "turned": turned, **circuit.last_activity}
+            )
 
         worm.advance(dt)
 
@@ -213,8 +263,11 @@ if __name__ == "__main__":
     print()
     print(f"Turns triggered:     {turn_count}")
     print(f"Distance to food, start -> end: {start_distance:.1f} -> {end_distance:.1f}")
-    print(
-        "Closed the gap"
-        if end_distance < start_distance
-        else "Did not close the gap this run (try a different seed - it's a random walk biased by the gradient, not a guaranteed solver)"
-    )
+    print(f"Steps taken:         {len(worm.path) - 1}")
+    if end_distance <= EAT_RADIUS:
+        print("Reached the food")
+    else:
+        print(
+            "Did not reach the food this run (try a different seed - it's a random walk "
+            "biased by the gradient, not a guaranteed solver)"
+        )
