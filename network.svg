@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 870" width="1000" height="870" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+<defs>
+<marker id="ag" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1f7a4d"/></marker>
+<marker id="ao" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#b5541c"/></marker>
+<marker id="ax" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#b8bdb9"/></marker>
+</defs>
+<rect width="1000" height="870" fill="#ffffff"/>
+<text x="500" y="38" text-anchor="middle" font-size="24" font-weight="700" fill="#1d2a24">One tiny neural network: how the worm decides</text>
+<text x="500" y="62" text-anchor="middle" font-size="14" fill="#5b6660">Same network, two situations. Only the neurons on the active path fire.</text>
+<rect x="20" y="90" width="960" height="345" rx="12" fill="none" stroke="#dfe3e0"/>
+<text x="40" y="120" font-size="16" font-weight="700" fill="#1f7a4d">Case 1 — concentration is rising (getting closer to food)</text>
+<text x="190" y="140" text-anchor="middle" font-size="12" letter-spacing="0.8" fill="#6b756f">SENSORY INPUT</text>
+<text x="500" y="140" text-anchor="middle" font-size="12" letter-spacing="0.8" fill="#6b756f">INTERNEURONS (LIF)</text>
+<text x="810" y="140" text-anchor="middle" font-size="12" letter-spacing="0.8" fill="#6b756f">MOTOR DECISION</text>
+<line x1="220" y1="205" x2="470" y2="205" stroke="#1f7a4d" stroke-width="2.5" marker-end="url(#ag)"/>
+<circle cx="345.0" cy="205.0" r="10" fill="#fff" stroke="#1f7a4d" stroke-width="1.2"/>
+<text x="345.0" y="210.0" text-anchor="middle" font-size="15" font-weight="700" fill="#1f7a4d">+</text>
+<line x1="220" y1="325" x2="470" y2="325" stroke="#b8bdb9" stroke-width="1.5" marker-end="url(#ax)"/>
+<circle cx="345.0" cy="325.0" r="10" fill="#fff" stroke="#b8bdb9" stroke-width="1.2"/>
+<text x="345.0" y="330.0" text-anchor="middle" font-size="15" font-weight="700" fill="#b8bdb9">+</text>
+<line x1="530" y1="205" x2="780" y2="205" stroke="#1f7a4d" stroke-width="2.5" marker-end="url(#ag)"/>
+<circle cx="655.0" cy="205.0" r="10" fill="#fff" stroke="#1f7a4d" stroke-width="1.2"/>
+<text x="655.0" y="210.0" text-anchor="middle" font-size="15" font-weight="700" fill="#1f7a4d">+</text>
+<line x1="530" y1="325" x2="780" y2="325" stroke="#b8bdb9" stroke-width="1.5" marker-end="url(#ax)"/>
+<circle cx="655.0" cy="325.0" r="10" fill="#fff" stroke="#b8bdb9" stroke-width="1.2"/>
+<text x="655.0" y="330.0" text-anchor="middle" font-size="15" font-weight="700" fill="#b8bdb9">+</text>
+<line x1="528" y1="215" x2="782" y2="315" stroke="#1f7a4d" stroke-width="2.5" stroke-dasharray="6 4" marker-end="url(#ag)"/>
+<circle cx="599.12" cy="243.0" r="10" fill="#fff" stroke="#1f7a4d" stroke-width="1.2"/>
+<text x="599.12" y="248.0" text-anchor="middle" font-size="15" font-weight="700" fill="#1f7a4d">−</text>
+<line x1="528" y1="315" x2="782" y2="215" stroke="#b8bdb9" stroke-width="1.5" stroke-dasharray="6 4" marker-end="url(#ax)"/>
+<circle cx="599.12" cy="287.0" r="10" fill="#fff" stroke="#b8bdb9" stroke-width="1.2"/>
+<text x="599.12" y="292.0" text-anchor="middle" font-size="15" font-weight="700" fill="#b8bdb9">−</text>
+<circle cx="190" cy="205" r="30" fill="#dcefe4" stroke="#1f7a4d" stroke-width="2.5"/>
+<text x="190" y="210" text-anchor="middle" font-size="15" font-weight="700" fill="#1d2a24">rise</text>
+<text x="190" y="253" text-anchor="middle" font-size="12" fill="#1d2a24">ΔC/C &gt; 0</text>
+<polyline points="168,167 175,167 178,151 181,167 194,167 197,151 200,167 212,167" fill="none" stroke="#1f7a4d" stroke-width="2"/>
+<circle cx="190" cy="325" r="30" fill="#f3f4f3" stroke="#b8bdb9" stroke-width="1.5"/>
+<text x="190" y="330" text-anchor="middle" font-size="15" font-weight="700" fill="#8a918d">fall</text>
+<text x="190" y="373" text-anchor="middle" font-size="12" fill="#8a918d">ΔC/C &lt; 0</text>
+<circle cx="500" cy="205" r="30" fill="#dcefe4" stroke="#1f7a4d" stroke-width="2.5"/>
+<text x="500" y="210" text-anchor="middle" font-size="15" font-weight="700" fill="#1d2a24">AIY</text>
+<text x="500" y="253" text-anchor="middle" font-size="12" fill="#1d2a24">&#8220;getting better&#8221;</text>
+<polyline points="478,167 485,167 488,151 491,167 504,167 507,151 510,167 522,167" fill="none" stroke="#1f7a4d" stroke-width="2"/>
+<circle cx="500" cy="325" r="30" fill="#f3f4f3" stroke="#b8bdb9" stroke-width="1.5"/>
+<text x="500" y="330" text-anchor="middle" font-size="15" font-weight="700" fill="#8a918d">AIZ</text>
+<text x="500" y="373" text-anchor="middle" font-size="12" fill="#8a918d">&#8220;getting worse&#8221;</text>
+<circle cx="810" cy="205" r="30" fill="#dcefe4" stroke="#1f7a4d" stroke-width="2.5"/>
+<text x="810" y="210" text-anchor="middle" font-size="15" font-weight="700" fill="#1d2a24">straight</text>
+<text x="810" y="253" text-anchor="middle" font-size="12" fill="#1d2a24">keep heading</text>
+<polyline points="788,167 795,167 798,151 801,167 814,167 817,151 820,167 832,167" fill="none" stroke="#1f7a4d" stroke-width="2"/>
+<circle cx="810" cy="325" r="30" fill="#f3f4f3" stroke="#b8bdb9" stroke-width="1.5"/>
+<text x="810" y="330" text-anchor="middle" font-size="15" font-weight="700" fill="#8a918d">turn</text>
+<text x="810" y="373" text-anchor="middle" font-size="12" fill="#8a918d">pick new heading</text>
+<text x="500" y="415" text-anchor="middle" font-size="14" fill="#1d2a24">AIY fires more than AIZ  →  AIZ never gets to out-vote it  →  keep going straight</text>
+<rect x="20" y="455" width="960" height="345" rx="12" fill="none" stroke="#dfe3e0"/>
+<text x="40" y="485" font-size="16" font-weight="700" fill="#b5541c">Case 2 — concentration is falling (getting farther from food)</text>
+<text x="190" y="505" text-anchor="middle" font-size="12" letter-spacing="0.8" fill="#6b756f">SENSORY INPUT</text>
+<text x="500" y="505" text-anchor="middle" font-size="12" letter-spacing="0.8" fill="#6b756f">INTERNEURONS (LIF)</text>
+<text x="810" y="505" text-anchor="middle" font-size="12" letter-spacing="0.8" fill="#6b756f">MOTOR DECISION</text>
+<line x1="220" y1="570" x2="470" y2="570" stroke="#b8bdb9" stroke-width="1.5" marker-end="url(#ax)"/>
+<circle cx="345.0" cy="570.0" r="10" fill="#fff" stroke="#b8bdb9" stroke-width="1.2"/>
+<text x="345.0" y="575.0" text-anchor="middle" font-size="15" font-weight="700" fill="#b8bdb9">+</text>
+<line x1="220" y1="690" x2="470" y2="690" stroke="#b5541c" stroke-width="2.5" marker-end="url(#ao)"/>
+<circle cx="345.0" cy="690.0" r="10" fill="#fff" stroke="#b5541c" stroke-width="1.2"/>
+<text x="345.0" y="695.0" text-anchor="middle" font-size="15" font-weight="700" fill="#b5541c">+</text>
+<line x1="530" y1="570" x2="780" y2="570" stroke="#b8bdb9" stroke-width="1.5" marker-end="url(#ax)"/>
+<circle cx="655.0" cy="570.0" r="10" fill="#fff" stroke="#b8bdb9" stroke-width="1.2"/>
+<text x="655.0" y="575.0" text-anchor="middle" font-size="15" font-weight="700" fill="#b8bdb9">+</text>
+<line x1="530" y1="690" x2="780" y2="690" stroke="#b5541c" stroke-width="2.5" marker-end="url(#ao)"/>
+<circle cx="655.0" cy="690.0" r="10" fill="#fff" stroke="#b5541c" stroke-width="1.2"/>
+<text x="655.0" y="695.0" text-anchor="middle" font-size="15" font-weight="700" fill="#b5541c">+</text>
+<line x1="528" y1="580" x2="782" y2="680" stroke="#b8bdb9" stroke-width="1.5" stroke-dasharray="6 4" marker-end="url(#ax)"/>
+<circle cx="599.12" cy="608.0" r="10" fill="#fff" stroke="#b8bdb9" stroke-width="1.2"/>
+<text x="599.12" y="613.0" text-anchor="middle" font-size="15" font-weight="700" fill="#b8bdb9">−</text>
+<line x1="528" y1="680" x2="782" y2="580" stroke="#b5541c" stroke-width="2.5" stroke-dasharray="6 4" marker-end="url(#ao)"/>
+<circle cx="599.12" cy="652.0" r="10" fill="#fff" stroke="#b5541c" stroke-width="1.2"/>
+<text x="599.12" y="657.0" text-anchor="middle" font-size="15" font-weight="700" fill="#b5541c">−</text>
+<circle cx="190" cy="570" r="30" fill="#f3f4f3" stroke="#b8bdb9" stroke-width="1.5"/>
+<text x="190" y="575" text-anchor="middle" font-size="15" font-weight="700" fill="#8a918d">rise</text>
+<text x="190" y="618" text-anchor="middle" font-size="12" fill="#8a918d">ΔC/C &gt; 0</text>
+<circle cx="190" cy="690" r="30" fill="#f7e4d6" stroke="#b5541c" stroke-width="2.5"/>
+<text x="190" y="695" text-anchor="middle" font-size="15" font-weight="700" fill="#1d2a24">fall</text>
+<text x="190" y="738" text-anchor="middle" font-size="12" fill="#1d2a24">ΔC/C &lt; 0</text>
+<polyline points="168,652 175,652 178,636 181,652 194,652 197,636 200,652 212,652" fill="none" stroke="#b5541c" stroke-width="2"/>
+<circle cx="500" cy="570" r="30" fill="#f3f4f3" stroke="#b8bdb9" stroke-width="1.5"/>
+<text x="500" y="575" text-anchor="middle" font-size="15" font-weight="700" fill="#8a918d">AIY</text>
+<text x="500" y="618" text-anchor="middle" font-size="12" fill="#8a918d">&#8220;getting better&#8221;</text>
+<circle cx="500" cy="690" r="30" fill="#f7e4d6" stroke="#b5541c" stroke-width="2.5"/>
+<text x="500" y="695" text-anchor="middle" font-size="15" font-weight="700" fill="#1d2a24">AIZ</text>
+<text x="500" y="738" text-anchor="middle" font-size="12" fill="#1d2a24">&#8220;getting worse&#8221;</text>
+<polyline points="478,652 485,652 488,636 491,652 504,652 507,636 510,652 522,652" fill="none" stroke="#b5541c" stroke-width="2"/>
+<circle cx="810" cy="570" r="30" fill="#f3f4f3" stroke="#b8bdb9" stroke-width="1.5"/>
+<text x="810" y="575" text-anchor="middle" font-size="15" font-weight="700" fill="#8a918d">straight</text>
+<text x="810" y="618" text-anchor="middle" font-size="12" fill="#8a918d">keep heading</text>
+<circle cx="810" cy="690" r="30" fill="#f7e4d6" stroke="#b5541c" stroke-width="2.5"/>
+<text x="810" y="695" text-anchor="middle" font-size="15" font-weight="700" fill="#1d2a24">turn</text>
+<text x="810" y="738" text-anchor="middle" font-size="12" fill="#1d2a24">pick new heading</text>
+<polyline points="788,652 795,652 798,636 801,652 814,652 817,636 820,652 832,652" fill="none" stroke="#b5541c" stroke-width="2"/>
+<text x="500" y="780" text-anchor="middle" font-size="14" fill="#1d2a24">AIZ fires more than AIY  →  the vote says “turn”  →  random new heading</text>
+<text x="500" y="840" text-anchor="middle" font-size="12.5" fill="#5b6660">Solid arrow = excitatory (+)  ·  dashed = inhibitory (−)  ·  zigzag = spikes</text>
+<text x="500" y="858" text-anchor="middle" font-size="12.5" fill="#5b6660">The network only sees the change in concentration, never its absolute level. Moving changes what it senses next.</text>
+</svg>
